@@ -15,9 +15,9 @@ def time_getting_words(word):
 
 
 random_words= []
-num_repeats = 20
+num_repeats = 50
 #for length in xrange(2,14):
-for word_length in xrange(5,15):
+for word_length in xrange(15,16):
     for repeats in xrange(num_repeats):
         random_word = ''
         for character in xrange(word_length):

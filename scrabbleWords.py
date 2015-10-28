@@ -30,6 +30,7 @@ def all_possible_words(letters, anagram_dict):
 
 
 def get_all_words(letters, possible_combos = None):
+    print letters
     if not possible_combos: possible_combos = []
     possible_combos += [letters]
     if len(letters) == 1:
