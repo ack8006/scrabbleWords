@@ -1,0 +1,89 @@
+<html>
+	<form id='search_form' action='javascript:get_words();'>
+			<input type=text id ='letter_search'>
+			<button type='button' id='search_button'>Submit</button>
+	</form>
+	<p><i>13 letters or less should be instant</i></p>
+	<h1 id='status'></h1>
+	<p id='number_words'></p>
+	<table id='word_table'>
+	</table>
+</html>
+
+
+<script>
+function get_words()
+{
+	var xmlhttp = new XMLHttpRequest();
+	var str = document.getElementById('letter_search').value;
+	xmlhttp.open('GET', '/scrabbleWords?letters=' + str, true);
+	xmlhttp.send();
+	var head = document.getElementById('status');
+	head.innerHTML = 'Loading';
+	empty_page_for_loading();
+	xmlhttp.onload=function()
+	{
+		document.getElementById('search_button').disabled = false;
+		head.innerHTML = 'Possible Words For: '.concat(str);
+		var words = JSON.parse(xmlhttp.responseText);
+		var words_array = create_words_array(words);
+		add_word_count(words_array);
+		add_words_to_table(words_array);
+	}
+}
+
+function empty_page_for_loading()
+{
+	document.getElementById('letter_search').value = '';
+	document.getElementById('search_button').disabled = true;
+
+	var table = document.getElementById('word_table');
+	while (table.firstChild){
+		table.removeChild(table.firstChild);
+	}
+}
+
+function create_words_array(words)
+{
+	var words_array = new Array(words.length);
+	for (var key in words){
+		words_array.push(new Array(key, words[key]))
+	}
+	words_array.sort(function(a,b) {
+					if (a[0].length == b[0].length) {return a[0] > b[0] ? 1:-1;}
+					else { return a[0].length > b[0].length ? 1:-1;}
+					});
+	words_array.sort(function(a,b) {
+					return b[1] > a[1] ? 1:-1;
+					});
+	return words_array;
+}
+
+function add_word_count(words_array)
+{
+	document.getElementById('number_words').innerHTML = 'Total Word Combinations: '.concat(words_array.length-1);
+}
+
+function add_words_to_table(words_array)
+{
+	var table = document.getElementById('word_table');
+
+	for(word_ind = 0; word_ind < words_array.length-1 ; word_ind++){
+		var row = table.insertRow(word_ind);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		cell1.innerHTML = words_array[word_ind][0];
+		cell2.innerHTML = words_array[word_ind][1];
+	}
+	var row = table.insertRow(0);
+	row.insertCell(0).innerHTML = '<b>WORD</b>';
+	row.insertCell(1).innerHTML = '<b>SCORE</b>';
+}
+
+</script>
+
+
+
+
+
+

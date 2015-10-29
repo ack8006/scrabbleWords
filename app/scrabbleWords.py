@@ -4,7 +4,7 @@ import time
 def gen_anagram_dict():
     print 'GENERATING ANAGRAM DICT'
     anagram_dict = {}
-    with open('/home/hitch/GitHub/scrabbleWords/dictionary.csv', 'rb') as csvfile:
+    with open('/home/hitch/GitHub/scrabbleWords/app/static/dictionary.csv', 'rb') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             key = ''.join(sorted(row[0]))
@@ -30,7 +30,6 @@ def all_possible_words(letters, anagram_dict):
 
 
 def get_all_words(letters, possible_combos = None):
-    print letters
     if not possible_combos: possible_combos = []
     possible_combos += [letters]
     if len(letters) == 1:
