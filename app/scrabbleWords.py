@@ -4,7 +4,7 @@ import time
 def gen_anagram_dict():
     print 'GENERATING ANAGRAM DICT'
     anagram_dict = {}
-    with open('/home/hitch/GitHub/scrabbleWords/app/static/dictionary.csv', 'rb') as csvfile:
+    with open('../static/dictionary.csv', 'rb') as csvfile:
         reader = csv.reader(csvfile)
         for row in reader:
             key = ''.join(sorted(row[0]))
