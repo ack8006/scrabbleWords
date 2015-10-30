@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 import unittest
 from ..scrabbleWords import *
 
@@ -19,7 +21,7 @@ class scrabbleTests(unittest.TestCase):
         assert(all_possible_words('et', self.anagram_dict) == ['et'])
 
     def test_get_three_letter_word(self):
-        assert(all_possible_words('set', self.anagram_dict) == ['et','es','set'])
+        assert(all_possible_words('set', self.anagram_dict) == ['es','et','set'])
 
     def test_get_seven_letter_word(self):
         result = ['el', 'es', 'er', 're', 'be', 'al', 'la', 'as', 'ab', 'ba', 'ae', 'ar', 'lar', 'als', 'las', 'sal', 'abs', 'bas', 'sab', 'els', 'sel', 'cel', 'sec', 'sae', 'sea', 'are', 'ear', 'era', 'ers', 'res', 'ser', 'ale', 'lea', 'ars', 'ras', 'cab', 'alb', 'bal', 'lab', 'arb', 'bar', 'bra', 'ace', 'lac', 'sac', 'arc', 'car', 'ebb', 'bel', 'reb', 'rec', 'arbs', 'bars', 'bras', 'abbe', 'babe', 'lars', 'earl', 'lear', 'rale', 'real', 'ales', 'lase', 'leas', 'sale', 'seal', 'bels', 'cels', 'barb', 'recs', 'bare', 'bear', 'brae', 'base', 'sabe', 'able', 'bale', 'blae', 'arcs', 'cars', 'scar', 'rebs', 'ares', 'arse', 'ears', 'eras', 'rase', 'sear', 'sera', 'alec', 'lace', 'carb', 'crab', 'cabs', 'scab', 'aces', 'case', 'acre', 'care', 'race', 'carl', 'lacs', 'albs', 'bals', 'labs', 'slab', 'blab', 'ebbs', 'bleb', 'ables', 'bales', 'blase', 'sable', 'babel', 'acres', 'cares', 'carse', 'escar', 'races', 'scare', 'serac', 'abler', 'baler', 'blare', 'blear', 'carls', 'abbes', 'babes', 'blabs', 'barbe', 'blebs', 'carle', 'clear', 'lacer', 'alecs', 'laces', 'scale', 'barbs', 'bares', 'baser', 'bears', 'braes', 'saber', 'sabre', 'carbs', 'crabs', 'cable', 'acerb', 'brace', 'caber', 'arles', 'earls', 'lares', 'laser', 'lears', 'rales', 'reals', 'seral', 'braces', 'cabers', 'carles', 'clears', 'lacers', 'scaler', 'sclera', 'barbel', 'rabble', 'babels', 'barbes', 'balers', 'blares', 'blears', 'cables', 'barbels', 'rabbles', 'slabber', 'clabber', 'scabble', 'clabbers', 'scrabble']

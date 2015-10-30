@@ -1,5 +1,6 @@
 import csv
 import time
+from itertools import combinations
 
 def gen_anagram_dict():
     print 'GENERATING ANAGRAM DICT'
@@ -29,17 +30,15 @@ def all_possible_words(letters, anagram_dict):
     return sorted(possible_words, key=len)
 
 
-def get_all_words(letters, possible_combos = None):
-    if not possible_combos: possible_combos = []
-    possible_combos += [letters]
-    if len(letters) == 1:
-        return possible_combos
-    uq_letters = sorted(list(set(letters)))
-    for let in uq_letters:
-        new_letters = letters.replace(let, '', 1)
-        if new_letters not in possible_combos:
-            possible_combos = get_all_words(new_letters, possible_combos)
-    return possible_combos
+def get_all_words(letters):
+    possible_combos = [letters]
+    for len_word in xrange(1,len(letters)):
+        combos = combinations(letters, len_word)
+        for combo in combos:
+            combo = ''.join(combo)
+            possible_combos.append(combo)
+    return list(set(possible_combos))
+
 
 def score_words(all_words):
     value_list = {'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f': 4, 'g': 2,
@@ -61,7 +60,8 @@ if __name__ == '__main__':
         start_time = time.time()
         all_words = sorted(all_possible_words(letters, anagram_dict))
         all_words = sorted(all_words, key=len)
-        print score_words(all_words)
+        scored_words = score_words(all_words)
         print str(time.time()-start_time) + ' seconds'
+        print scored_words[:100]
 
 
