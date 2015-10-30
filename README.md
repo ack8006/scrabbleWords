@@ -6,7 +6,7 @@ Simply download packages, change the file path in the scrabbleWords.py for the d
 
 The program will first pull dictionary.csv into a hash table with the sorted word as the key and the value as a list of words. This allows constant time access to the anagrams of a word being searched.
 
-To find all valid words from an input of letters, instead of having to look for all possible combinations which is an O(n!) problem, only have to find sorted combinations which is an O(n^2) problem. 
+To find all valid words from an input of letters, instead of having to look for all possible permutations which is an O(n!) problem, only have to find sorted combinations which is an O(2^n) problem. 
 
 
 
